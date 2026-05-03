@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allen & Yu Rong | Wedding Invitation</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+TC:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        morandi: {
+                            gold: '#d4a373',
+                            green: '#8da399',
+                            bg: '#faf9f6',
+                            text: '#4a4a4a'
+                        }
+                    },
+                    fontFamily: {
+                        cormorant: ['"Cormorant Garamond"', 'serif'],
+                        noto: ['"Noto Serif TC"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for specialized effects -->
+    <style>
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background-color: #faf9f6;
+            color: #4a4a4a;
+        }
+        
+        .font-eng {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Frosted Glass Navigation */
+        .glass-nav {
+            background: rgba(250, 249, 246, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212, 163, 115, 0.2);
+        }
+
+        /* Glowing Card for Timer */
+        .glow-card {
+            background: #ffffff;
+            box-shadow: 0 8px 25px rgba(212, 163, 115, 0.15), 0 4px 10px rgba(141, 163, 153, 0.08);
+            border: 1px solid rgba(212, 163, 115, 0.1);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        .glow-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Image Overlay */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+        }
+
+        /* Form Inputs Customization */
+        .form-input {
+            border: none;
+            border-bottom: 1px solid #ccc;
+            background: transparent;
+            border-radius: 0;
+            padding: 8px 0;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-bottom-color: #d4a373;
+            box-shadow: 0 1px 0 0 #d4a373;
+        }
+
+        /* Accordion Smooth Transition */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-btn.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #faf9f6; }
+        ::-webkit-scrollbar-thumb { background: #d4a373; border-radius: 4px; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation (Frosted Glass) -->
+    <nav class="fixed w-full top-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-5xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+            <div class="font-noto text-xl font-semibold tracking-wider text-morandi-gold">仲毅 & 羽溶</div>
+            <div class="space-x-6 text-sm tracking-widest hidden md:block">
+                <a href="#home" class="hover:text-morandi-gold transition-colors">首頁</a>
+                <a href="#details" class="hover:text-morandi-gold transition-colors">婚禮詳情</a>
+                <a href="#rsvp" class="hover:text-morandi-gold transition-colors">出席回函</a>
+            </div>
+            <!-- Mobile Menu Button (Simplified for elegance, scrolls section) -->
+            <div class="md:hidden space-x-4 text-xs tracking-widest">
+                <a href="#details" class="hover:text-morandi-gold">詳情</a>
+                <a href="#rsvp" class="hover:text-morandi-gold">回函</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('https://i.postimg.cc/pLxdDDqz/0J7A5403.jpg');"></div>
+        <div class="absolute inset-0 hero-overlay"></div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center text-white px-4 mt-16">
+            <h1 class="font-eng text-5xl md:text-7xl mb-4 tracking-widest drop-shadow-lg">Allen & Yu Rong</h1>
+            <p class="font-eng text-xl md:text-2xl tracking-[0.2em] mb-10 text-morandi-gold drop-shadow-md">2026 . 09 . 12</p>
+            
+            <div class="space-y-2 mt-8 opacity-90">
+                <p class="text-sm md:text-base tracking-[0.3em] font-light">平凡的日子，因為你而閃閃發亮。</p>
+                <p class="font-eng text-xs md:text-sm tracking-widest italic opacity-80">Ordinary days shine because of you.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Countdown Timer Section -->
+    <section class="py-16 md:py-24 bg-morandi-bg">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-xl md:text-2xl tracking-[0.2em] mb-2 text-morandi-gold">倒數計時</h2>
+            <p class="font-eng text-sm tracking-widest text-morandi-green mb-10">COUNTDOWN TO OUR BIG DAY</p>
+            
+            <!-- Artistic Timer Cards -->
+            <div class="flex justify-center items-center gap-3 md:gap-6 font-eng">
+                <!-- Days -->
+                <div class="glow-card w-20 h-24 md:w-28 md:h-32 flex flex-col justify-center items-center relative">
+                    <span id="days" class="text-3xl md:text-5xl text-morandi-text mb-1">00</span>
+                    <div class="w-8 border-t border-morandi-gold/30 my-1"></div>
+                    <span class="text-[10px] md:text-xs tracking-widest text-morandi-green uppercase">Days</span>
+                </div>
+                
+                <div class="text-morandi-gold/50 text-2xl font-light">:</div>
+
+                <!-- Hours -->
+                <div class="glow-card w-20 h-24 md:w-28 md:h-32 flex flex-col justify-center items-center relative">
+                    <span id="hours" class="text-3xl md:text-5xl text-morandi-text mb-1">00</span>
+                    <div class="w-8 border-t border-morandi-gold/30 my-1"></div>
+                    <span class="text-[10px] md:text-xs tracking-widest text-morandi-green uppercase">Hours</span>
+                </div>
+
+                <div class="text-morandi-gold/50 text-2xl font-light">:</div>
+
+                <!-- Minutes -->
+                <div class="glow-card w-20 h-24 md:w-28 md:h-32 flex flex-col justify-center items-center relative">
+                    <span id="minutes" class="text-3xl md:text-5xl text-morandi-text mb-1">00</span>
+                    <div class="w-8 border-t border-morandi-gold/30 my-1"></div>
+                    <span class="text-[10px] md:text-xs tracking-widest text-morandi-green uppercase">Mins</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wedding Details (V-Card style) -->
+    <section id="details" class="py-20 bg-white">
+        <div class="max-w-2xl mx-auto px-6 text-center">
+            <h2 class="text-2xl tracking-[0.2em] mb-2 text-morandi-gold">婚禮資訊</h2>
+            <p class="font-eng text-sm tracking-widest text-morandi-green mb-12">WEDDING DETAILS</p>
+
+            <!-- Invitation Text -->
+            <div class="mb-16 text-morandi-text leading-loose tracking-widest text-sm md:text-base">
+                <p>Hi 親愛的家人與朋友們：</p>
+                <p class="text-morandi-gold text-lg md:text-xl my-4 font-medium tracking-[0.3em]">仲毅 & 羽溶 要結婚囉 ❤♡</p>
+                <p>在這個對我們非常重要的日子，<br class="hidden md:block">誠心邀請每一位重要的您來參加我們的婚禮，<br class="hidden md:block">共同見證這幸福時刻，分享我們的喜悅。</p>
+                <p class="mt-4">期待 2026/09/12 與大家見面，一同留下美好回憶！</p>
+            </div>
+
+            <div class="space-y-12 border-l border-morandi-gold/30 py-4 relative ml-4 md:ml-0 md:border-none">
+                
+                <!-- Time -->
+                <div class="relative pl-8 md:pl-0">
+                    <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-morandi-gold md:hidden"></div>
+                    <h3 class="font-eng text-xl text-morandi-gold mb-2 tracking-widest">TIME</h3>
+                    <p class="tracking-widest leading-relaxed">
+                        2026年09月12日 (星期六)<br>
+                        12:00 午宴入席
+                    </p>
+                </div>
+
+                <!-- Location -->
+                <div class="relative pl-8 md:pl-0">
+                    <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-morandi-gold md:hidden"></div>
+                    <h3 class="font-eng text-xl text-morandi-gold mb-2 tracking-widest">LOCATION</h3>
+                    <p class="tracking-widest leading-relaxed">
+                        <span class="whitespace-nowrap font-medium text-lg">和選旅</span><br>
+                        <span class="whitespace-nowrap font-medium text-base text-morandi-text">2F 硯宴軒</span><br>
+                        <span class="whitespace-nowrap text-sm mt-1 inline-block text-morandi-green">新竹市東區大學路16號</span>
+                    </p>
+                </div>
+
+                <!-- Transportation Accordion -->
+                <div class="relative pl-8 md:pl-0 mt-8 text-left md:text-center max-w-lg mx-auto">
+                    <button class="accordion-btn w-full flex items-center justify-between md:justify-center md:gap-4 py-4 border-b border-gray-200 focus:outline-none">
+                        <span class="tracking-[0.2em] text-morandi-text">交通指引 <span class="font-eng text-xs text-morandi-green ml-1">TRANSPORTATION</span></span>
+                        <svg class="accordion-icon w-5 h-5 text-morandi-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content bg-morandi-bg/50 rounded-b-lg px-4">
+                        <div class="py-6 space-y-6 text-sm tracking-wide leading-relaxed">
+                            
+                            <!-- Google Map Thumbnail -->
+                            <a href="https://www.google.com/maps/search/?api=1&query=和選旅+新竹市東區大學路16號" target="_blank" rel="noopener noreferrer" class="block relative overflow-hidden rounded-lg shadow-sm border border-morandi-gold/20 group cursor-pointer">
+                                <!-- Map Background iframe (zoomed to location) -->
+                                <div class="w-full h-32 md:h-40 transition-transform duration-700 group-hover:scale-105 bg-gray-100">
+                                    <iframe class="w-full h-full pointer-events-none" src="https://maps.google.com/maps?q=%E5%92%8C%E9%81%B8%E6%97%85+%E6%96%B0%E7%AB%B9%E5%B8%82%E6%9D%B1%E5%8D%80%E5%A4%A7%E5%AD%B8%E8%B7%AF16%E8%99%9F&t=&z=16&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="-1"></iframe>
+                                </div>
+                                <!-- Dark Overlay -->
+                                <div class="absolute inset-0 bg-black/10 transition-colors duration-300 group-hover:bg-black/30 flex items-center justify-center">
+                                    <!-- Frosted Glass Button -->
+                                    <div class="bg-white/85 backdrop-blur-sm px-5 py-2.5 rounded-full flex items-center gap-2 shadow-lg transform transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-xl">
+                                        <svg class="w-5 h-5 text-morandi-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                        <span class="text-morandi-text text-sm tracking-widest font-medium">開啟 Google 地圖</span>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <p>
+                                <strong class="text-morandi-gold font-normal">自行開車：</strong><br>
+                                國道一號於 <span class="whitespace-nowrap">「新竹交流道」</span>（光復路出口）下，往市區方向行駛，右轉大學路即可抵達。<br>
+                                導航請設定 <span class="whitespace-nowrap">「新竹市東區大學路16號」</span>。賓客享有免費停車優惠。
+                            </p>
+                            <p>
+                                <strong class="text-morandi-gold font-normal">高鐵：</strong><br>
+                                搭乘至 <span class="whitespace-nowrap">「高鐵新竹站」</span>，轉乘計程車約 15-20 分鐘即可抵達；或轉乘公車 182 路至 <span class="whitespace-nowrap">「陽明交大光復路」</span> 下車步行即可抵達。
+                            </p>
+                            <p>
+                                <strong class="text-morandi-gold font-normal">台鐵：</strong><br>
+                                搭乘至 <span class="whitespace-nowrap">「新竹火車站」</span>，轉乘計程車約 10-15 分鐘；或搭乘市區公車至 <span class="whitespace-nowrap">「陽明交大光復路」</span> 下車步行。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="py-20 bg-morandi-bg relative">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl tracking-[0.2em] mb-2 text-morandi-gold">出席回函</h2>
+                <p class="font-eng text-sm tracking-widest text-morandi-green">R.S.V.P</p>
+                <p class="mt-6 text-sm tracking-widest text-gray-500">期待與您分享這份喜悅，請於 2026/08/01 前填寫回覆</p>
+            </div>
+
+            <!-- Form Container -->
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-[0_10px_40px_-15px_rgba(212,163,115,0.2)] relative z-10">
+                
+                <!-- Hidden Iframe for Google Form Submission -->
+                <script type="text/javascript">var submitted=false;</script>
+                <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { document.getElementById('form-container').style.display='none'; document.getElementById('success-message').style.display='block'; window.scrollTo(0, document.getElementById('rsvp').offsetTop); }"></iframe>
+                
+                <div id="form-container">
+                    <form action="https://docs.google.com/forms/d/e/1FAIpQLSf9fkBw-flh9gtsBhGBGu1Vf7rkRmQBuu4EcWiXYCs6V9DAkw/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;" class="space-y-8">
+                        
+                        <!-- Row 1: Name & Phone -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="flex flex-col">
+                                <label class="text-sm tracking-widest mb-1 text-morandi-text">姓名 <span class="font-eng text-xs text-morandi-green ml-1">NAME</span></label>
+                                <input type="text" name="entry.1889519809" required class="form-input w-full">
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-sm tracking-widest mb-1 text-morandi-text">聯絡電話 <span class="font-eng text-xs text-morandi-green ml-1">PHONE</span></label>
+                                <input type="tel" name="entry.1546031296" required class="form-input w-full">
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Relationship -->
+                        <div class="flex flex-col">
+                            <label class="text-sm tracking-widest mb-1 text-morandi-text">您是哪方的親友？ <span class="font-eng text-xs text-morandi-green ml-1">RELATIONSHIP</span></label>
+                            <select name="entry.1483060877" required class="form-input w-full bg-white">
+                                <option value="" disabled selected></option>
+                                <option value="男方親友">男方親友</option>
+                                <option value="女方親友">女方親友</option>
+                                <option value="共同好友">共同好友</option>
+                            </select>
+                        </div>
+
+                        <!-- Row 3: Attendance -->
+                        <div class="flex flex-col">
+                            <label class="text-sm tracking-widest mb-1 text-morandi-text">請問是否參加婚宴 <span class="font-eng text-xs text-morandi-green ml-1">ATTENDANCE</span></label>
+                            <select name="entry.447673108" required class="form-input w-full bg-white">
+                                <option value="" disabled selected></option>
+                                <option value="一定參加！一起見證幸福時刻">一定參加！一起見證幸福時刻</option>
+                                <option value="無法出席，但祝福心滿滿~">無法出席，但祝福心滿滿~</option>
+                            </select>
+                        </div>
+
+                        <!-- Row 4: Headcount -->
+                        <div class="flex flex-col">
+                            <label class="text-sm tracking-widest mb-1 text-morandi-text">出席人數 (包含自己) <span class="font-eng text-xs text-morandi-green ml-1">HEADCOUNT</span></label>
+                            <input type="number" name="entry.1030640358" id="headcount" min="0" placeholder="若無法參加請填 0" required class="form-input w-full">
+                        </div>
+
+                        <!-- Conditional Logic Area (Hidden by default) -->
+                        <div id="conditional-fields" class="hidden space-y-8 p-6 bg-morandi-bg/50 rounded-lg border border-morandi-gold/20">
+                            <!-- Dietary -->
+                            <div class="flex flex-col">
+                                <label class="text-sm tracking-widest mb-1 text-morandi-text">請問是否吃素？ <span class="font-eng text-xs text-morandi-green ml-1">DIETARY</span></label>
+                                <span class="text-xs text-morandi-gold mb-2 tracking-wider">※ 素食人數請於下方備註欄說明幾位</span>
+                                <select name="entry.882216467" id="dietary-select" class="form-input w-full bg-transparent">
+                                    <option value="" disabled selected></option>
+                                    <option value="無肉不歡 (葷食)">無肉不歡 (葷食)</option>
+                                    <option value="蔬食主義 (素食)">蔬食主義 (素食)</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Child Seat -->
+                            <div class="flex flex-col">
+                                <label class="text-sm tracking-widest mb-1 text-morandi-text">是否需要兒童座椅？ <span class="font-eng text-xs text-morandi-green ml-1">CHILD SEAT</span></label>
+                                <select name="entry.233928307" id="child-seat-select" class="form-input w-full bg-transparent">
+                                    <option value="" disabled selected></option>
+                                    <option value="不需要">不需要</option>
+                                    <option value="1張">1張</option>
+                                    <option value="2張">2張</option>
+                                    <option value="3張">3張</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row 5 & 6: Invitation Type & Dynamic Fields (Address/Email) -->
+                        <div class="flex flex-col space-y-4">
+                            <div class="flex flex-col">
+                                <label class="text-sm tracking-widest mb-1 text-morandi-text">是否需要寄送喜帖？ <span class="font-eng text-xs text-morandi-green ml-1">INVITATION</span></label>
+                                <!-- 新增 required 屬性 -->
+                                <select name="entry.885339808" id="invitation-select" required class="form-input w-full bg-white">
+                                    <option value="" disabled selected></option>
+                                    <option value="我想收到紙本喜帖，請寄給我 (請填寫郵寄地址)">我想收到紙本喜帖，請寄給我 (請填寫郵寄地址)</option>
+                                    <option value="環保愛地球，請寄電子喜帖給我 (請填寫Email)">環保愛地球，請寄電子喜帖給我 (請填寫Email)</option>
+                                    <option value="不需要，婚禮相關資訊我都知道了，不用特別寄喜帖給我囉">不需要，婚禮相關資訊我都知道了，不用特別寄喜帖給我囉</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Dynamic Address Field -->
+                            <div id="address-field" class="hidden flex flex-col pl-4 border-l-2 border-morandi-gold/50">
+                                <label class="text-sm tracking-widest mb-1 text-morandi-text">郵寄地址 <span class="font-eng text-xs text-morandi-green ml-1">ADDRESS</span></label>
+                                <input type="text" id="postal-address" placeholder="請填寫含郵遞區號之完整地址" class="form-input w-full">
+                                <span class="text-xs text-gray-400 mt-2">※ 為了確保順利送達，此地址將自動合併至下方備註欄送出</span>
+                            </div>
+
+                            <!-- Dynamic Email Field -->
+                            <div id="email-field" class="hidden flex flex-col pl-4 border-l-2 border-morandi-gold/50">
+                                <label class="text-sm tracking-widest mb-1 text-morandi-text">電子信箱 <span class="font-eng text-xs text-morandi-green ml-1">EMAIL</span></label>
+                                <input type="email" name="entry.550962488" id="email-input" placeholder="請填寫您的電子信箱" class="form-input w-full">
+                            </div>
+                        </div>
+
+                        <!-- Row 7: Notes/Blessings (Including the extra ID as blessing) -->
+                        <div class="flex flex-col mt-4">
+                            <label class="text-sm tracking-widest mb-1 text-morandi-text">給我們的祝福或備註 <span class="font-eng text-xs text-morandi-green ml-1">BLESSING & NOTES</span></label>
+                            <!-- 只有這個欄位沒有 required 屬性 (非必填) -->
+                            <textarea name="entry.15979997" rows="3" class="form-input w-full resize-none"></textarea>
+                            <!-- Including the additional ID requested just in case it's part of the form mapping -->
+                            <input type="hidden" name="entry.1911804670" value="">
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-6 text-center">
+                            <button type="submit" class="bg-morandi-gold text-white font-eng tracking-[0.2em] py-3 px-12 rounded hover:bg-opacity-90 transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-morandi-gold">
+                                SUBMIT
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Success Message (Shown after form submit) -->
+                <div id="success-message" class="hidden text-center py-16">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-morandi-green/20 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-morandi-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h3 class="text-2xl tracking-widest text-morandi-gold mb-4">回覆成功</h3>
+                    <p class="tracking-wider text-gray-600 mb-8">非常感謝您的回覆，期待在婚禮上與您相見！</p>
+                    <p class="font-eng italic text-morandi-green tracking-widest">Thank you, see you soon.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 text-center border-t border-morandi-gold/10">
+        <div class="font-noto text-2xl text-morandi-gold mb-2 tracking-widest">仲毅 & 羽溶</div>
+        <p class="text-xs tracking-widest text-gray-400 mb-1">ALLEN & YU RONG WEDDING</p>
+        <p class="font-eng text-xs text-gray-300 tracking-widest">© 2026 All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // --- Countdown Timer Logic ---
+        const countDownDate = new Date("Sep 12, 2026 12:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+            // Formatting to add leading zero
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+        }, 1000);
+
+        // --- Smart Form Logic (Conditional Fields) ---
+        const headcountInput = document.getElementById('headcount');
+        const conditionalFields = document.getElementById('conditional-fields');
+        const dietarySelect = document.getElementById('dietary-select');
+        const childSeatSelect = document.getElementById('child-seat-select');
+
+        headcountInput.addEventListener('input', function() {
+            const val = parseInt(this.value);
+            if (val > 0) {
+                conditionalFields.classList.remove('hidden');
+                // Make them required when visible
+                dietarySelect.setAttribute('required', 'required');
+                childSeatSelect.setAttribute('required', 'required');
+            } else {
+                conditionalFields.classList.add('hidden');
+                // Remove required when hidden so form can submit
+                dietarySelect.removeAttribute('required');
+                childSeatSelect.removeAttribute('required');
+                // Reset values
+                dietarySelect.value = "";
+                childSeatSelect.value = "";
+            }
+        });
+
+        // --- Accordion Logic ---
+        const accordionBtn = document.querySelector('.accordion-btn');
+        const accordionContent = document.querySelector('.accordion-content');
+
+        accordionBtn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            if (accordionContent.style.maxHeight) {
+                accordionContent.style.maxHeight = null;
+            } else {
+                accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+            }
+        });
+
+        // --- Invitation Type & Dynamic Fields Logic ---
+        const invitationSelect = document.getElementById('invitation-select');
+        const addressField = document.getElementById('address-field');
+        const postalAddressInput = document.getElementById('postal-address');
+        const emailField = document.getElementById('email-field');
+        const emailInput = document.getElementById('email-input');
+
+        invitationSelect.addEventListener('change', function() {
+            // 處理紙本地址欄位顯示/隱藏
+            if (this.value.includes('紙本')) {
+                addressField.classList.remove('hidden');
+                postalAddressInput.setAttribute('required', 'required');
+            } else {
+                addressField.classList.add('hidden');
+                postalAddressInput.removeAttribute('required');
+                postalAddressInput.value = '';
+            }
+
+            // 處理電子信箱欄位顯示/隱藏
+            if (this.value.includes('電子喜帖')) {
+                emailField.classList.remove('hidden');
+                emailInput.setAttribute('required', 'required');
+            } else {
+                emailField.classList.add('hidden');
+                emailInput.removeAttribute('required');
+                emailInput.value = '';
+            }
+        });
+
+        // --- Form Submit Interceptor (Merge Address to Notes) ---
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function() {
+            const inviteType = invitationSelect.value;
+            const address = postalAddressInput.value;
+            const notes = document.querySelector('textarea[name="entry.15979997"]');
+            
+            if (inviteType.includes('紙本') && address.trim() !== '') {
+                const addressStr = `[郵寄地址：${address}]\n`;
+                if (!notes.value.includes(addressStr)) {
+                    notes.value = addressStr + notes.value;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
