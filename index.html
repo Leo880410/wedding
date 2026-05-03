@@ -368,7 +368,10 @@
                             <!-- Dynamic Email Field -->
                             <div id="email-field" class="hidden flex flex-col pl-4 border-l-2 border-morandi-gold/50">
                                 <label class="text-sm tracking-widest mb-1 text-morandi-text">電子信箱 <span class="font-eng text-xs text-morandi-green ml-1">EMAIL</span></label>
-                                <input type="email" name="entry.550962488" id="email-input" placeholder="請填寫您的電子信箱" class="form-input w-full">
+                                <!-- 將 type 改為 text 以繞過瀏覽器預設的強制阻擋 -->
+                                <input type="text" name="entry.550962488" id="email-input" placeholder="請填寫您的電子信箱" class="form-input w-full">
+                                <!-- 溫和的提示訊息 -->
+                                <span id="email-warning" class="hidden text-xs text-red-400 mt-2 tracking-wider transition-all">※ 提醒：信箱格式似乎缺少「@」，請確認。若確認無誤仍可送出。</span>
                             </div>
                         </div>
 
@@ -486,6 +489,7 @@
         const postalAddressInput = document.getElementById('postal-address');
         const emailField = document.getElementById('email-field');
         const emailInput = document.getElementById('email-input');
+        const emailWarning = document.getElementById('email-warning'); // 新增信箱警告綁定
 
         invitationSelect.addEventListener('change', function() {
             // 處理紙本地址欄位顯示/隱藏
@@ -506,6 +510,17 @@
                 emailField.classList.add('hidden');
                 emailInput.removeAttribute('required');
                 emailInput.value = '';
+                emailWarning.classList.add('hidden'); // 重置時隱藏警告
+            }
+        });
+
+        // --- Email Format Soft Warning Logic ---
+        emailInput.addEventListener('input', function() {
+            // 如果使用者有輸入文字，且沒有包含 '@'，則顯示溫和的提示，但不會強制阻擋
+            if (this.value.trim() !== '' && !this.value.includes('@')) {
+                emailWarning.classList.remove('hidden');
+            } else {
+                emailWarning.classList.add('hidden');
             }
         });
 
