@@ -354,7 +354,7 @@
                                     <option value="" disabled selected></option>
                                     <option value="我想收到紙本喜帖，請寄給我 (請填寫郵寄地址)">我想收到紙本喜帖，請寄給我 (請填寫郵寄地址)</option>
                                     <option value="環保愛地球，請寄電子喜帖給我 (請填寫Email)">環保愛地球，請寄電子喜帖給我 (請填寫Email)</option>
-                                    <option value="不需要，婚禮相關資訊我都知道了，不用特別寄喜帖給我囉">不需要，婚禮相關資訊我都知道了，不用特別寄喜帖給我囉</option>
+                                    <option value="不需要，婚禮相關資訊我都知道了，不用特別寄喜帖給我囉">不需要，婚禮相關資訊我都知道了，不用特別寄喜帖 ഇരു</option>
                                 </select>
                             </div>
                             
@@ -372,13 +372,18 @@
                             </div>
                         </div>
 
-                        <!-- Row 7: Notes/Blessings (Including the extra ID as blessing) -->
-                        <div class="flex flex-col mt-4">
-                            <label class="text-sm tracking-widest mb-1 text-morandi-text">給我們的祝福或備註 <span class="font-eng text-xs text-morandi-green ml-1">BLESSING & NOTES</span></label>
-                            <!-- 只有這個欄位沒有 required 屬性 (非必填) -->
-                            <textarea name="entry.15979997" rows="3" class="form-input w-full resize-none"></textarea>
-                            <!-- Including the additional ID requested just in case it's part of the form mapping -->
-                            <input type="hidden" name="entry.1911804670" value="">
+                        <!-- Row 7: Messages & Notes -->
+                        <div class="grid grid-cols-1 gap-8 mt-4">
+                            <div class="flex flex-col">
+                                <label class="text-sm tracking-widest mb-1 text-morandi-text">給我們的祝福 <span class="font-eng text-xs text-morandi-green ml-1">MESSAGE</span></label>
+                                <!-- 只有這個欄位沒有 required 屬性 (非必填) -->
+                                <textarea name="entry.1911804670" rows="3" class="form-input w-full resize-none" placeholder="寫下您想對我們說的話..."></textarea>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-sm tracking-widest mb-1 text-morandi-text">備註 <span class="font-eng text-xs text-morandi-green ml-1">NOTES</span></label>
+                                <!-- 只有這個欄位沒有 required 屬性 (非必填) -->
+                                <textarea name="entry.15979997" id="notes-textarea" rows="2" class="form-input w-full resize-none" placeholder="其他需要讓我們知道的事項..."></textarea>
+                            </div>
                         </div>
 
                         <!-- Submit Button -->
@@ -509,7 +514,7 @@
         form.addEventListener('submit', function() {
             const inviteType = invitationSelect.value;
             const address = postalAddressInput.value;
-            const notes = document.querySelector('textarea[name="entry.15979997"]');
+            const notes = document.getElementById('notes-textarea');
             
             if (inviteType.includes('紙本') && address.trim() !== '') {
                 const addressStr = `[郵寄地址：${address}]\n`;
